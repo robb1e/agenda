@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+	title Agenda
+	= stylesheet_link_tag "application", :media => "all"
+	= csrf_meta_tags
+  body
+    header
+      - if current_user.present?
+        p Welcome, #{current_user.first_name}
+        p= link_to "Logout", "/logout"
+      - else
+        p= link_to "Login with Foursquare", "/auth/foursquare"
+	  div.container
+	  =yield
+	  footer
+	
+	  = javascript_include_tag "application"
