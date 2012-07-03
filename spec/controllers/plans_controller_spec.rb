@@ -25,4 +25,14 @@ describe PlansController do
       response.should redirect_to plan_path(plan.id)
     end
   end
+  
+  describe "#show" do
+    let(:plan) { stub_model(Plan) }
+    it "sets the plan" do
+      Plan.should_receive(:find).with("1") { plan }
+      get :show, id: "1"
+      assigns(:plan).should == plan
+    end
+  end
+  
 end
