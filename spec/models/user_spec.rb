@@ -2,6 +2,11 @@ require 'spec_helper'
 
 describe User do
 
+  describe "associations" do
+    it { should have_many(:memberships) }
+    it { should have_many(:plans).through(:memberships) }
+  end
+
   describe ".create_from_omniauth" do
     let(:foursquare_id) { stub }
     let(:first_name) { stub }

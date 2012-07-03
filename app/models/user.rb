@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
 
   attr_accessible :foursquare_id, :first_name, :last_name, :email, :avatar
 
+  has_many :memberships
+  has_many :plans, through: :memberships
+
   def self.create_from_omniauth(auth)
     if "foursquare" == auth["provider"]
       foursquare_id = auth["uid"]
