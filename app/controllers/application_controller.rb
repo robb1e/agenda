@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     unless current_user
       @foursquare ||= Foursquare::Base.new(ENV['FOURSQUARE_KEY'], ENV['FOURSQUARE_SECRET'])
     else
-      @foursquare ||= Foursquare::Base.new(session[:access_token])
+      @foursquare ||= Foursquare::Base.new(current_user.foursquare_token)
     end
   end  
   
