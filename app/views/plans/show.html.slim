@@ -1,1 +1,8 @@
 h1= @plan.name
+
+= form_tag(search_plan_path, :method => :get) do
+ = label_tag :query, 'Place name'
+ = text_field_tag(:query)
+ = label_tag :near
+ = text_field_tag(:near)
+ = submit_tag(:search)

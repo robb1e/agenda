@@ -2,7 +2,11 @@ Agenda::Application.routes.draw do
 
   root to: 'home#index'
 
-  resources :plans
+  resources :plans do
+    member do
+      get 'search'
+    end
+  end
 
   # AUTHENTICATION
   # /auth/:provider is handled by Rack middleware in config/initializers/omniauth.rb
