@@ -40,14 +40,17 @@ describe PlansController do
     let(:venues) { stub }
     let(:places) { stub }
     let(:results) { stub }
+    let(:plan) { stub }
     
     it "assigns places" do
       @controller.should_receive(:foursquare) { foursquare }
       foursquare.should_receive(:venues) { venues }
+      Plan.should_receive(:find).with("1") { plan }
       venues.should_receive(:search).with(near: "near", query: "query", limit: 5) { results }
       results.should_receive(:[]).with("places") { places }
       get :search, id: "1", near: "near", query: "query"
       assigns(:places).should == places
+      assigns(:plan).should == plan
     end
   end
   

@@ -10,6 +10,7 @@ class PlansController < ApplicationController
   end
   
   def search
+    @plan = Plan.find(params[:id])
     @places = foursquare.venues.search(near: params[:near], query: params[:query], limit: 5)["places"]
   end
   

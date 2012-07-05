@@ -2,4 +2,9 @@ h1 Search results
 
 ul
 - @places.each do |place|
-  li= place.name
+  li
+    =place.name
+    =form_tag(plan_places_path(@plan.id), method: :post) do
+      =hidden_field_tag 'venue_id', place.id
+      =button_tag('Add')
+    

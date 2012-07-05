@@ -6,6 +6,7 @@ Agenda::Application.routes.draw do
     member do
       get 'search'
     end
+    resources :places
   end
 
   # AUTHENTICATION
