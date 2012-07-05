@@ -33,4 +33,5 @@ group :development, :test do
   gem 'jslint_on_rails'
   gem 'heroku', require: false
   gem "shoulda-matchers"
+  gem 'activerecord-nulldb-adapter'
 end

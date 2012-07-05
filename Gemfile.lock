@@ -22,6 +22,8 @@ GEM
       activesupport (= 3.2.4)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
+    activerecord-nulldb-adapter (0.2.0)
+      activerecord (>= 2.0.0)
     activeresource (3.2.4)
       activemodel (= 3.2.4)
       activesupport (= 3.2.4)
@@ -228,6 +230,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-nulldb-adapter
   coffee-rails (~> 3.2.2)
   foreman
   foursquare2
