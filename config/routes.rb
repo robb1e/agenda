@@ -7,6 +7,7 @@ Agenda::Application.routes.draw do
       get 'search'
     end
     resources :places
+    resources :picks
   end
 
   # AUTHENTICATION

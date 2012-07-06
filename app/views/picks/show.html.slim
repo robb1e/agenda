@@ -1,0 +1,6 @@
+h1= @pick.name
+
+= simple_form_for(@pick, url: plan_pick_path) do |f|
+  = f.input :from
+  = f.input :until
+  = f.submit
