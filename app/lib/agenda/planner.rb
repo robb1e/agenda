@@ -2,6 +2,8 @@ module Agenda
   class Planner
     include Agenda::FoursquareClient
   
+    attr_reader :plan_id
+  
     def initialize(plan_id)
       @plan_id = plan_id
     end
@@ -18,6 +20,10 @@ module Agenda
     def pick(pick_id)
       Pick.find_by_id_and_plan_id(pick_id, @plan_id)
     end  
+    
+    def picked
+      plan.picks.reject { |p| nil == p.from }.sort_by(&:from).group_by{|p| p.from.to_date }
+    end
     
     private 
     def find_and_create(foursquare_venue_id)

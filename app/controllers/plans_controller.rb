@@ -7,6 +7,7 @@ class PlansController < ApplicationController
   
   def show
     @plan = Plan.find(params[:id])
+    @planner = Agenda::Planner.new(params[:id])
   end
   
   def search

@@ -10,4 +10,12 @@ h1= @plan.name
  h2 Picks
  ul
  - @plan.picks.each do |pick|
-  li= link_to pick.name, plan_pick_path(pick)
+  li= link_to pick.name, plan_pick_path(@plan, pick)
+  
+h2 Plan
+ul
+ - @planner.picked.each do |day, picks|
+  li= day
+  ul
+    - picks.each do |pick|
+      li= pick.name
