@@ -6,10 +6,16 @@ describe HomeController do
     let(:user) { stub }
     let(:plans) { stub }
     it "assigs plans" do
-      @controller.should_receive(:current_user) { user }
+      @controller.stub(:current_user) { user }
       user.should_receive(:plans) { plans }
       get :index
       assigns(:plans).should == plans
+    end
+    
+    it "does nothing if no user is present" do
+      @controller.stub(:current_user) { nil }
+      get :index
+      assigns(:plans).should == []
     end
   end
 

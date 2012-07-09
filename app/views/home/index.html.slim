@@ -8,8 +8,8 @@ h1 Your Agenda
 		= f.input :from, as: :string, placeholder: "mm/dd/yyyy"
 		= f.submit
 		
-h2 Your current agendas
+  h2 Your current agendas
 
-ul
-- @plans.each do |plan|
-  li= link_to plan.name, plan_path(plan)
+  ul
+  - @plans.each do |plan|
+    li= link_to plan.name, plan_path(plan)
