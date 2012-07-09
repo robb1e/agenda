@@ -1,4 +1,4 @@
-class PlansController < ApplicationController
+class PlansController < AuthenticatedController
   def create
     plan = Plan.create(params[:plan])
     Membership.create(plan: plan, user: current_user)

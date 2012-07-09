@@ -1,4 +1,4 @@
-class PlacesController < ApplicationController 
+class PlacesController < AuthenticatedController 
   def create
     planner = Agenda::Planner.new(params[:plan_id])
     planner.add_venue_by_foursquare_id(params[:venue_id])

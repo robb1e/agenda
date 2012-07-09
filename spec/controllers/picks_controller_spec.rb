@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe PicksController do
   
+  before do
+    @controller.stub(:current_user) { stub }
+  end
+  
   describe "#show" do
     let(:pick_id) { "1" }
     let(:plan_id) { "1" }

@@ -1,4 +1,4 @@
-class PicksController < ApplicationController
+class PicksController < AuthenticatedController
   
   def show
     planner = Agenda::Planner.new(params[:plan_id])

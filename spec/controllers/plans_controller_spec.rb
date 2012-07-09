@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe PlansController do
+  
+  let(:user) { stub }
+  
+  before do
+    @controller.stub(:current_user) { user }
+  end
+  
   describe "#create" do
     let(:plan_name) { stub }
     let(:from) { stub }

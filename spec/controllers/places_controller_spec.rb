@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe PlacesController do
 
+  before do
+    @controller.stub(:current_user) { stub }
+  end
+
   describe "#create" do
     let(:plan) { stub(id: 1) }
     let(:plan_id) { "1" }
