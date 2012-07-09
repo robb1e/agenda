@@ -2,12 +2,12 @@ Agenda::Application.routes.draw do
 
   root to: 'home#index'
 
-  resources :plans do
+  resources :plans, only:[:create, :show] do
     member do
       get 'search'
     end
-    resources :places
-    resources :picks
+    resources :places, only: [:create]
+    resources :picks, only: [:show, :update]
   end
 
   # AUTHENTICATION
