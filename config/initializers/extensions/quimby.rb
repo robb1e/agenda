@@ -11,6 +11,5 @@ module Foursquare
         venues
       end
     end
-    
   end
 end

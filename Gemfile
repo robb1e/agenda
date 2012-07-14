@@ -23,7 +23,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :test do
+group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'jasmine'
@@ -31,11 +31,8 @@ group :test do
   gem "shoulda-matchers"
   gem 'activerecord-nulldb-adapter'
   gem 'rake'
-end
-
-group :development do
+  gem 'rails_best_practices'
   gem 'heroku', require: false
   gem 'gem-open'
   gem 'foreman'
-  gem 'rails_best_practices'
 end

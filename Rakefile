@@ -7,7 +7,10 @@ require File.expand_path('../config/application', __FILE__)
 Agenda::Application.load_tasks
 
 build_tasks = [
-  "rspec"
+  "db:migrate",
+  "db:test:prepare",
+  "rspec",
+  "best_practices"
 ]
 
 task :ci => build_tasks

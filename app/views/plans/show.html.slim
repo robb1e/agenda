@@ -6,12 +6,12 @@ h1= @plan.name
  = label_tag :near
  = text_field_tag(:near)
  = submit_tag(:search)
- 
+
  h2 Picks
  ul
  - @plan.picks.each do |pick|
   li= link_to pick.name, plan_pick_path(@plan, pick)
-  
+
 h2 Plan
 ul
  - @planner.picked.each do |day, picks|

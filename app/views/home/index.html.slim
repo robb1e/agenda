@@ -4,10 +4,10 @@ h1 Your Agenda
 
   h2 Create new agenda
   = simple_form_for(Plan.new) do |f|
-		= f.input :name
-		= f.input :from, as: :string, placeholder: "mm/dd/yyyy"
-		= f.submit
-		
+    = f.input :name
+    = f.input :from, as: :string, placeholder: "mm/dd/yyyy"
+    = f.submit
+
   h2 Your current agendas
 
   ul

@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
       avatar = auth["info"]["image"]
       create!(foursquare_id: foursquare_id, first_name: first_name, last_name: last_name, email: email, avatar: avatar)
     end
-    
   end
 
 end
