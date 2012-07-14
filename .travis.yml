@@ -1,5 +1,5 @@
 language: ruby
-script: "bundle exec rake spec:ci"
+script: "bundle exec rake ci"
 env:
   - CI=true
 rvm:

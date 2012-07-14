@@ -5,3 +5,9 @@
 require File.expand_path('../config/application', __FILE__)
 
 Agenda::Application.load_tasks
+
+build_tasks = [
+  "rspec"
+]
+
+task :ci => build_tasks
