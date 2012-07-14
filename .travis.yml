@@ -1,0 +1,14 @@
+language: ruby
+script: "bundle exec rake spec:ci"
+env:
+  - CI=true
+rvm:
+  - 1.9.3
+gemfile:
+  - Gemfile
+notifications:
+  recipients:
+    - robert.clutton@gmail.com
+branches:
+  only:
+    - master
