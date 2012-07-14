@@ -248,6 +248,7 @@ DEPENDENCIES
   quimby
   rails (= 3.2.4)
   rails_best_practices
+  rake
   rspec-rails
   sass-rails (~> 3.2.4)
   settingslogic
