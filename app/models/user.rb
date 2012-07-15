@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  attr_accessible :foursquare_id, :first_name, :last_name, :email, :avatar
+  attr_accessible :foursquare_id, :facebook_id, :first_name, :last_name, :email, :avatar
 
   has_many :memberships
   has_many :plans, through: :memberships
@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
       avatar = auth["info"]["image"]
       create!(foursquare_id: foursquare_id, first_name: first_name, last_name: last_name, email: email, avatar: avatar)
     end
+  end
+
+  def self.create_with_facebook_omniauth(auth)
+    create!(facebook_id: auth[:uid], first_name: auth[:info][:first_name], last_name: auth[:info][:last_name], email: auth[:info][:email], avatar: auth[:info][:image])
   end
 
 end

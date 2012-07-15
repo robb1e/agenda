@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120714213545) do
+ActiveRecord::Schema.define(:version => 20120715222444) do
 
   create_table "memberships", :force => true do |t|
     t.integer  "plan_id"
@@ -68,6 +68,11 @@ ActiveRecord::Schema.define(:version => 20120714213545) do
     t.string   "avatar"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.string   "facebook_id"
+    t.string   "facebook_token"
   end
+
+  add_index "users", ["facebook_id"], :name => "index_users_on_facebook_id"
+  add_index "users", ["foursquare_id"], :name => "index_users_on_foursquare_id"
 
 end
