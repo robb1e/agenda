@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'omniauth'
 gem 'omniauth-foursquare'
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 gem 'simple_form'
 gem 'foursquare2'
 gem "json"

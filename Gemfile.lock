@@ -110,6 +110,8 @@ GEM
     omniauth (1.1.0)
       hashie (~> 1.2)
       rack
+    omniauth-facebook (1.4.0)
+      omniauth-oauth2 (~> 1.0.2)
     omniauth-foursquare (0.0.7)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
@@ -242,6 +244,7 @@ DEPENDENCIES
   jslint_on_rails
   json
   omniauth
+  omniauth-facebook
   omniauth-foursquare
   omniauth-twitter
   pg
