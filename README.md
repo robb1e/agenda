@@ -1,5 +1,7 @@
 = Agenda
 
+[![Build Status](http://travis-ci.org/robb1e/agenda.png?branch=master)](http://travis-ci.org/robb1e/agenda)
+
 == Database
 
 `rake db:create`
