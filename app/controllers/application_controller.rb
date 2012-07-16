@@ -18,4 +18,12 @@ class ApplicationController < ActionController::Base
     @plan_id ||= params[:plan_id] || params[:id]
     @planner ||= Agenda::Planner.new(@plan_id)
   end
+
+  def render_401
+    render template: 'errors/401', status: 401
+  end
+
+  def render_403
+    render template: 'errors/403', status: 403
+  end
 end

@@ -30,7 +30,7 @@ describe AuthsController do
       @controller.stub(:current_user) { nil }
       with_auths_routing do      
         get :index
-        response.should redirect_to root_path
+        response.response_code.should == 401
         flash[:notice].should == "You need to be logged in to do that."
       end
     end
@@ -68,7 +68,7 @@ describe AuthsController do
       it "returns false" do
         with_auths_routing do
           get :index
-          response.should redirect_to root_path
+          response.response_code.should == 403
         end
       end
     end
