@@ -19,6 +19,13 @@ describe AuthsController do
   end
   
   describe "#should_be_logged_in" do
+    let(:planner) { stub }
+    before do
+      @controller.stub(:planner) { planner }
+      @controller.stub(:current_user) { user }
+      planner.stub(:is_member?) { true }    
+    end
+    
     it "should redirect to homepage with flash message if no current user" do
       @controller.stub(:current_user) { nil }
       with_auths_routing do      
@@ -35,6 +42,37 @@ describe AuthsController do
         response.should be_success
       end
     end
+  end
+  
+  describe "#should_be_a_member" do
+    let(:planner) { stub }
+    let(:user) { stub }
+    before do
+      @controller.stub(:planner) { planner }
+      @controller.stub(:current_user) { user }
+      planner.should_receive(:is_member?).with(user) { is_member }
+    end
+    
+    context "is a member" do
+      let(:is_member) { true }
+      it "returns true" do
+        with_auths_routing do
+          get :index
+          response.should be_success
+        end
+      end
+    end
+    
+    context "is not a member" do
+      let(:is_member) { false }
+      it "returns false" do
+        with_auths_routing do
+          get :index
+          response.should redirect_to root_path
+        end
+      end
+    end
+    
   end
   
 end

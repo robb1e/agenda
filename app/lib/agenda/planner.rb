@@ -25,6 +25,10 @@ module Agenda
       plan.picks.reject { |p| nil == p.from }.sort_by(&:from).group_by{|p| p.from.to_date }
     end
 
+    def is_member?(user)
+      plan.memberships.any? { |membership| membership.user == user }
+    end
+
     private
     def find_and_create(foursquare_venue_id)
       result = find_venue(foursquare_venue_id)

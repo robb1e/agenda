@@ -3,9 +3,12 @@ require 'spec_helper'
 describe PlansController do
   
   let(:user) { stub }
+  let(:planner) { stub }  
   
   before do
     @controller.stub(:current_user) { user }
+    @controller.stub(:planner) { planner }
+    planner.stub(:is_member?) { true }    
   end
   
   describe "#create" do
@@ -19,11 +22,7 @@ describe PlansController do
         name: plan_name
       } }
     end
-    
-    before do
-      @controller.should_receive(:current_user) { user }
-    end
-    
+        
     it "creates a new plan and associates it to the current user" do
       Plan.should_receive(:create) { plan }
       Membership.should_receive(:create).with(plan: plan, user: user)

@@ -13,4 +13,9 @@ class ApplicationController < ActionController::Base
       @foursquare ||= Foursquare::Base.new(current_user.foursquare_token)
     end
   end
+
+  def planner
+    @plan_id ||= params[:plan_id] || params[:id]
+    @planner ||= Agenda::Planner.new(@plan_id)
+  end
 end

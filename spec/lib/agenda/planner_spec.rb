@@ -93,4 +93,30 @@ describe Agenda::Planner do
     end
   end
   
+  describe "#is_member?" do
+  
+    let(:plan_id) { 1 }
+    let(:plan) { stub(memberships: memberships) }
+    let(:planner) { Agenda::Planner.new(plan_id) }
+    let(:user_1) { stub }
+    let(:user_2) { stub }
+    let(:user_3) { stub }
+    let(:member_1) { stub(user: user_1) }
+    let(:member_2) { stub(user: user_2) }
+    let(:memberships) { [member_1, member_2] }
+
+    before do
+      Plan.stub(:find).with(plan_id) { plan }
+    end
+    
+    it "returns true" do
+      planner.is_member?(user_1).should == true
+    end
+    
+    it "returns false" do
+      planner.is_member?(user_3).should == false
+    end
+    
+  end
+  
 end

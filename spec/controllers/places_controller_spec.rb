@@ -2,8 +2,11 @@ require 'spec_helper'
 
 describe PlacesController do
 
+  let(:planner) { stub }
   before do
     @controller.stub(:current_user) { stub }
+    @controller.stub(:planner) { planner }
+    planner.stub(:is_member?) { true }    
   end
 
   describe "#create" do
