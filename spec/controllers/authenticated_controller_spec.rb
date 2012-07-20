@@ -50,7 +50,7 @@ describe AuthsController do
     before do
       @controller.stub(:planner) { planner }
       @controller.stub(:current_user) { user }
-      planner.should_receive(:is_member?).with(user) { is_member }
+      planner.should_receive(:is_member?) { is_member }
     end
     
     context "is a member" do

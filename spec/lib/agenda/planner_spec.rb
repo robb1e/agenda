@@ -3,10 +3,10 @@ require 'spec_helper'
 describe Agenda::Planner do
   
   let(:current_user) { stub }
+  let(:plan_id) { stub }
+  let(:plan) { stub }
 
   describe "#initialize" do
-    let(:plan_id) { stub }
-    let(:plan) { stub }
     it "inits" do
       Plan.should_receive(:find).with(plan_id) { plan }
       planner = Agenda::Planner.new(plan_id, current_user)
@@ -124,6 +124,33 @@ describe Agenda::Planner do
         planner.is_member?.should == false
       end
     end
+  end
+
+  describe "#create_invitation" do
+
+    let(:invitation) { stub }
+    let(:planner) { Agenda::Planner.new(plan_id, current_user) }
+
+    before do
+      Plan.stub(:find).with(plan_id) { plan }
+    end
+
+    it "creates an invitation" do
+      Invitation.should_receive(:create) { invitation }
+      planner.create_invitation.should == invitation
+    end
+
+    it "should set the invite up" do
+      Invitation.should_receive(:create) do |args, &block| 
+        block.call(invitation)
+      end
+      invitation.should_receive(:user=).with(current_user)
+      invitation.should_receive(:invite_code=)
+      invitation.should_receive(:plan=)
+
+      planner.create_invitation
+    end
+
   end
   
 end

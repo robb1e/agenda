@@ -1,0 +1,14 @@
+h1 Members
+
+ul
+- @members.each do |member|
+	li= member.name
+
+h1 Invitations
+
+= form_tag(plan_members_path, :method => :post) do
+ = submit_tag("Create new invitation")
+
+ul
+- @invitations.each do |invite|
+	li= "#{invite.invite_code} created by #{invite.user.name}"

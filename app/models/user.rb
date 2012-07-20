@@ -20,4 +20,8 @@ class User < ActiveRecord::Base
     create!(facebook_id: auth[:uid], first_name: auth[:info][:first_name], last_name: auth[:info][:last_name], email: auth[:info][:email], avatar: auth[:info][:image])
   end
 
+  def name
+    "#{first_name} #{last_name}"
+  end
+
 end

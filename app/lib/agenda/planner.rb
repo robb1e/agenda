@@ -31,10 +31,30 @@ module Agenda
       plan.memberships.any? { |membership| membership.user == @user }
     end
 
+    def create_invitation
+      Invitation.create do |invite| 
+        invite.user = @user
+        invite.plan = plan
+        invite.invite_code = create_invite_code
+      end
+    end
+
+    def invitations
+      Invitation.find_all_by_plan_id(plan) || []
+    end
+
+    def members
+      plan.memberships
+    end
+
     private
     def find_and_create(foursquare_venue_id)
       result = find_venue(foursquare_venue_id)
       Place.create(foursquare_id: foursquare_venue_id, name: result.name)
+    end
+
+    def create_invite_code
+      rand(36**8).to_s(36)
     end
 
   end

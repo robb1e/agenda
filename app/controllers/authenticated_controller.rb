@@ -9,7 +9,7 @@ class AuthenticatedController < ApplicationController
   end
 
   def is_member
-    unless planner.is_member?(current_user)
+    unless planner.is_member?
       flash[:notice] = "You are not a member"
       render_403
     end

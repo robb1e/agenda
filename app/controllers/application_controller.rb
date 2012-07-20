@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
 
   def planner
     @plan_id ||= params[:plan_id] || params[:id]
-    @planner ||= Agenda::Planner.new(@plan_id)
+    @planner ||= Agenda::Planner.new(@plan_id, current_user)
   end
 
   def render_401

@@ -8,6 +8,7 @@ Agenda::Application.routes.draw do
     end
     resources :places, only: [:create]
     resources :picks, only: [:show, :update]
+    resources :members, only: [:create, :index]
   end
 
   # AUTHENTICATION
