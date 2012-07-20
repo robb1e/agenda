@@ -3,9 +3,11 @@ module Agenda
     include Agenda::FoursquareClient
 
     attr_reader :plan_id
+    attr_reader :user
 
-    def initialize(plan_id)
+    def initialize(plan_id, user)
       @plan_id = plan_id
+      @user = user
     end
 
     def plan
@@ -25,8 +27,8 @@ module Agenda
       plan.picks.reject { |p| nil == p.from }.sort_by(&:from).group_by{|p| p.from.to_date }
     end
 
-    def is_member?(user)
-      plan.memberships.any? { |membership| membership.user == user }
+    def is_member?
+      plan.memberships.any? { |membership| membership.user == @user }
     end
 
     private

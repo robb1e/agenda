@@ -2,12 +2,14 @@ require 'spec_helper'
 
 describe Agenda::Planner do
   
+  let(:current_user) { stub }
+
   describe "#initialize" do
     let(:plan_id) { stub }
     let(:plan) { stub }
     it "inits" do
       Plan.should_receive(:find).with(plan_id) { plan }
-      planner = Agenda::Planner.new(plan_id)
+      planner = Agenda::Planner.new(plan_id, current_user)
       planner.plan.should == plan
     end
   end
@@ -23,7 +25,7 @@ describe Agenda::Planner do
       it "creates the venue and returns the new record" do
         Plan.stub(:find).with(plan_id) { plan }
         Place.should_receive(:find_by_foursquare_id).with(foursquare_id) { nil }
-        planner = Agenda::Planner.new(plan_id)
+        planner = Agenda::Planner.new(plan_id, current_user)
         planner.should_receive(:find_venue).with(foursquare_id) { venue }
         Place.should_receive(:create).with(foursquare_id: foursquare_id, name: venue.name) { place }
         Pick.should_receive(:create).with(place: place, plan_id: plan_id)
@@ -37,7 +39,7 @@ describe Agenda::Planner do
       it "does something" do
         Plan.stub(:find).with(plan_id) { plan }
         Place.should_receive(:find_by_foursquare_id).with(foursquare_id) { place }
-        planner = Agenda::Planner.new(plan_id)
+        planner = Agenda::Planner.new(plan_id, current_user)
         Pick.should_receive(:create).with(place: place, plan_id: plan_id)
         
         planner.add_venue_by_foursquare_id(foursquare_id)        
@@ -49,7 +51,7 @@ describe Agenda::Planner do
     let(:pick_id) { stub }
     let(:plan_id) { stub }
     let(:pick) { stub }
-    let(:planner) { Agenda::Planner.new(plan_id) }
+    let(:planner) { Agenda::Planner.new(plan_id, current_user) }
     
     it "loads from Pick using the plan id" do
       Pick.should_receive(:find_by_id_and_plan_id).with(pick_id, plan_id) { pick }
@@ -65,7 +67,7 @@ describe Agenda::Planner do
     let(:pick_2) { stub("pick2", from: 1.hour.ago) }
     let(:pick_3) { stub("pick3", from: 24.hours.ago) }
     let(:picks) { [pick_1, pick_2, pick_3] }
-    let(:planner) { Agenda::Planner.new(plan_id) }
+    let(:planner) { Agenda::Planner.new(plan_id, current_user) }
     context "all picks have dates" do
       it "groups by date" do
         Plan.should_receive(:find).with(plan_id) { plan }
@@ -97,7 +99,7 @@ describe Agenda::Planner do
   
     let(:plan_id) { 1 }
     let(:plan) { stub(memberships: memberships) }
-    let(:planner) { Agenda::Planner.new(plan_id) }
+    let(:planner) { Agenda::Planner.new(plan_id, current_user) }
     let(:user_1) { stub }
     let(:user_2) { stub }
     let(:user_3) { stub }
@@ -109,14 +111,19 @@ describe Agenda::Planner do
       Plan.stub(:find).with(plan_id) { plan }
     end
     
-    it "returns true" do
-      planner.is_member?(user_1).should == true
+    context "is valid" do
+      let(:current_user) { user_1 }
+      it "returns true" do
+        planner.is_member?.should == true
+      end
     end
     
-    it "returns false" do
-      planner.is_member?(user_3).should == false
+    context "is not valid" do
+      let(:current_user) { user_3 }
+      it "returns false" do
+        planner.is_member?.should == false
+      end
     end
-    
   end
   
 end

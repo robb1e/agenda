@@ -7,7 +7,7 @@ class PlansController < AuthenticatedController
 
   def show
     @plan = Plan.find(params[:id])
-    @planner = Agenda::Planner.new(params[:id])
+    @planner = Agenda::Planner.new(params[:id], current_user)
   end
 
   def search
