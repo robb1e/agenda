@@ -11,6 +11,12 @@ Agenda::Application.routes.draw do
     resources :members, only: [:create, :index]
   end
 
+  resource :invitations, only:[] do
+    member do
+      post 'join'
+    end
+  end
+
   # AUTHENTICATION
   # /auth/:provider is handled by Rack middleware in config/initializers/omniauth.rb
   match '/auth/:provider/callback', to: 'sessions#create', as: 'sessions_create'

@@ -13,3 +13,10 @@ h1 Your Agenda
   ul
   - @plans.each do |plan|
     li= link_to plan.name, plan_path(plan)
+
+  h2 Got an invite?
+
+  = form_tag(join_invitations_path, :method => :post) do
+  	= label_tag :query, 'Invite code'
+  	= text_field_tag(:invite_code)
+  	= submit_tag(:join)

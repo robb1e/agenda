@@ -47,6 +47,13 @@ module Agenda
       plan.memberships
     end
 
+    def self.join(invite_code, user)
+      invite = Invitation.find_by_invite_code(invite_code)
+      raise "No such invitation" unless invite.present?
+      Membership.create(plan: invite.plan, user: user)
+      Agenda::Planner.new(invite.plan.id, user)
+    end
+
     private
     def find_and_create(foursquare_venue_id)
       result = find_venue(foursquare_venue_id)
