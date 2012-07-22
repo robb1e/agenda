@@ -12,7 +12,7 @@
 
 ## Starting	
 
-You need to set FOURSQUARE_KEY and FOURSQUARE_SECRET in your environment to use the authentication parts of the application.
+You need to set FOURSQUARE_KEY, FOURSQUARE_SECRET, FACEBOOK_KEY and FACEBOOK_SECRET in your environment to use the authentication parts of the application.
 
 ## Heroku
 
@@ -22,6 +22,8 @@ You need to set FOURSQUARE_KEY and FOURSQUARE_SECRET in your environment to use 
 	heroku run db:migrate -a <APP_NAME>
 	heroku config:add FOURSQUARE_KEY=<FOURSQUARE_KEY> -a <APP_NAME>
 	heroku config:add FOURSQUARE_SECRET=<FOURSQUARE_SECRET> -a <APP_NAME>
+	heroku config:add FACEBOOK_KEY=<FACEBOOK_KEY> -a <APP_NAME>
+	heroku config:add FACEBOOK_SECRET=<FACEBOOK_SECRET> -a <APP_NAME>
 
 ## Continuous Integration
 
