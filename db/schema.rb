@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120720212809) do
+ActiveRecord::Schema.define(:version => 20120722145205) do
 
   create_table "invitations", :force => true do |t|
     t.string   "invite_code"
@@ -21,6 +21,9 @@ ActiveRecord::Schema.define(:version => 20120720212809) do
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "invitations", ["plan_id"], :name => "index_invitations_on_plan_id"
+  add_index "invitations", ["user_id"], :name => "index_invitations_on_user_id"
+
   create_table "memberships", :force => true do |t|
     t.integer  "plan_id"
     t.integer  "user_id"
@@ -29,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20120720212809) do
   end
 
   add_index "memberships", ["plan_id"], :name => "index_memberships_on_plan_id"
+  add_index "memberships", ["user_id", "plan_id"], :name => "index_memberships_on_user_id_and_plan_id", :unique => true
   add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
 
   create_table "picks", :force => true do |t|

@@ -17,6 +17,6 @@ h1 Your Agenda
   h2 Got an invite?
 
   = form_tag(join_invitations_path, :method => :post) do
-  	= label_tag :query, 'Invite code'
-  	= text_field_tag(:invite_code)
-  	= submit_tag(:join)
+    = label_tag :query, 'Invite code'
+    = text_field_tag(:invite_code)
+    = submit_tag(:join)

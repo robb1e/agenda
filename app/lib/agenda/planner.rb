@@ -32,7 +32,7 @@ module Agenda
     end
 
     def create_invitation
-      Invitation.create do |invite| 
+      Invitation.create do |invite|
         invite.user = @user
         invite.plan = plan
         invite.invite_code = create_invite_code

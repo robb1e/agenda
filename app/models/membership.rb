@@ -4,6 +4,6 @@ class Membership < ActiveRecord::Base
   belongs_to :plan
 
   def name
-  	user.name
+    user.name
   end
 end
