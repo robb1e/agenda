@@ -2,6 +2,8 @@ Agenda::Application.routes.draw do
 
   root to: 'home#index'
 
+  match "/styleguide" => "home#styleguide"
+
   resources :plans, only:[:create, :show] do
     member do
       get 'search'
