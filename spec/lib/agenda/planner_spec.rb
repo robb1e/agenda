@@ -64,8 +64,8 @@ describe Agenda::Planner do
     let(:plan_id) { stub }
     let(:plan) { stub }
     let(:pick_1) { stub("pick1", from: Time.current) }
-    let(:pick_2) { stub("pick2", from: 1.hour.ago) }
-    let(:pick_3) { stub("pick3", from: 24.hours.ago) }
+    let(:pick_2) { stub("pick2", from: Time.current - 1.hour) }
+    let(:pick_3) { stub("pick3", from: 2.days.ago) }
     let(:picks) { [pick_1, pick_2, pick_3] }
     let(:planner) { Agenda::Planner.new(plan_id, current_user) }
     context "all picks have dates" do
@@ -74,7 +74,7 @@ describe Agenda::Planner do
         plan.should_receive(:picks) { picks }
       
         results = {}
-        results[1.day.ago.to_date] = [pick_3]
+        results[2.days.ago.to_date] = [pick_3]
         results[Date.current.to_date] = [pick_2, pick_1]
         planner.picked.should == results
       end
@@ -88,7 +88,7 @@ describe Agenda::Planner do
         plan.should_receive(:picks) { picks }
       
         results = {}
-        results[1.day.ago.to_date] = [pick_3]
+        results[2.days.ago.to_date] = [pick_3]
         results[Date.current.to_date] = [pick_2, pick_1]
         planner.picked.should == results
       end      
