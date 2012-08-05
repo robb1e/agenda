@@ -1,5 +1,7 @@
 class PicksController < AuthenticatedController
 
+  before_filter :is_member
+
   def show
     @pick = planner.pick(params[:id])
   end

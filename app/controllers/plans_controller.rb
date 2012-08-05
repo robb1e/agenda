@@ -1,4 +1,7 @@
 class PlansController < AuthenticatedController
+
+  before_filter :is_member, except: [:create]
+
   def create
     plan = Plan.create(params[:plan])
     Membership.create(plan: plan, user: current_user)

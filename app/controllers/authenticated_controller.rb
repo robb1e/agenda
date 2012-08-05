@@ -1,5 +1,6 @@
 class AuthenticatedController < ApplicationController
-  before_filter :should_be_logged_in, :is_member
+  
+  before_filter :should_be_logged_in
 
   def should_be_logged_in
     if current_user.nil?
