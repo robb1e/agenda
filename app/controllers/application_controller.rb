@@ -7,11 +7,7 @@ class ApplicationController < ActionController::Base
   end
 
   def foursquare
-    unless current_user
-      @foursquare ||= Foursquare::Base.new(ENV['FOURSQUARE_KEY'], ENV['FOURSQUARE_SECRET'])
-    else
-      @foursquare ||= Foursquare::Base.new(current_user.foursquare_token)
-    end
+    @foursquare ||= Foursquare::Base.new(ENV['FOURSQUARE_KEY'], ENV['FOURSQUARE_SECRET'])
   end
 
   def planner
