@@ -1,5 +1,4 @@
 class AuthenticatedController < ApplicationController
-  
   before_filter :should_be_logged_in
 
   def should_be_logged_in

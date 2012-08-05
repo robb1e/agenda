@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 class AuthsController < AuthenticatedController
+  before_filter :is_member
   def index
     render :text => "foo"
   end
