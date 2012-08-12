@@ -1,18 +1,20 @@
 doctype html
 html
   head
-  title Agenda
-  = stylesheet_link_tag "agenda", :media => "all"
-  = csrf_meta_tags
+    title Agenda
+    = stylesheet_link_tag "agenda", :media => "all"
+    = csrf_meta_tags
   body
-    .container
-      header
+    header
+      .container
         - if current_user.present?
-          p Welcome, #{current_user.first_name}
-          p= link_to "Logout", "/logout"
+          span.grid_8 Welcome, #{current_user.first_name}
+          span.links= link_to "Logout", "/logout"
         - else
-          p= link_to "Login with Facebook", "/auth/facebook"
-      .main
+          span.grid_12 = link_to "Login with Facebook", "/auth/facebook"
+    .main
+      .container
         =yield
-      footer
+    footer
+      .container
         = javascript_include_tag "application"

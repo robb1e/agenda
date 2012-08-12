@@ -1,5 +1,31 @@
 @import "960_12_col";
+@import "colors";
 
 .container {
 	@extend .container_12;
+}
+
+h1 {
+	font-size: 30px;
+}
+
+h1, h2, h3, h4 {
+	@extend .grid_12;
+}
+
+header {
+	background-color: $header-bg-color;
+	color: $header-text-color;
+	a:link {color:$header-text-color;}    
+	a:visited {color:$header-text-color;}  
+	a:hover {color:$header-text-color;}  
+	a:active {color:$header-text-color;}
+	.links{
+		text-align: right;
+		@extend .grid_4
+	}
+	span {
+		margin-top: 10px;
+		margin-bottom: 10px;
+	} 
 }
