@@ -10,7 +10,7 @@ Agenda::Application.configure do
 
   # Enable the asset pipeline
   config.assets.enabled = true
-  config.assets.compile = false
+  config.assets.compile = true
   config.assets.compress = false
   config.assets.precompile += ['agenda.css']
   config.assets.initialize_on_precompile = false
