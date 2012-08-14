@@ -55,7 +55,8 @@ module Agenda
 
     # Enable the asset pipeline
     config.assets.enabled = true
-
+    # Don't load Rails when doing precompile, this helps Heroku
+    config.assets.initialize_on_precompile = false
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 

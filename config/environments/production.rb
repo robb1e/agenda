@@ -9,11 +9,9 @@ Agenda::Application.configure do
   config.action_controller.perform_caching = true
 
   # Enable the asset pipeline
-  config.assets.enabled = true
   config.assets.compile = true
   config.assets.compress = false
   config.assets.precompile += ['agenda.css']
-  config.assets.initialize_on_precompile = false
 
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=315360000"
