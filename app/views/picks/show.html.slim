@@ -1,6 +1,8 @@
 h1= @pick.name
-
-= simple_form_for(@pick, url: plan_pick_path) do |f|
-  = f.input :from
-  = f.input :until
-  = f.submit
+.grid_12
+  p Pick the time you'll be at this place and for how long.
+.grid_12
+	= simple_form_for(@pick, url: plan_pick_path) do |f|
+	  = f.input :from
+	  = f.input :until
+	  = f.submit

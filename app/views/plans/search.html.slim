@@ -1,17 +1,17 @@
 h1 Search results
-
-= form_tag(search_plan_path, :method => :get) do
- = label_tag :query, 'Place name'
- = text_field_tag(:query)
- = label_tag :near
- = text_field_tag(:near)
- = submit_tag(:search)
-
-ul
-- @places.each do |place|
-  li
-    =place.name
-    =form_tag(plan_places_path(@plan.id), method: :post) do
-      =hidden_field_tag 'venue_id', place.id
-      =button_tag('Add')
+.grid_4
+	= form_tag(search_plan_path, :method => :get, class: "simple_form") do
+	 = label_tag :query, 'Place name'
+	 = text_field_tag(:query)
+	 = label_tag :near
+	 = text_field_tag(:near)
+	 = submit_tag(:search)
+.grid_8
+  ul
+  - @places.each do |place|
+    li
+      =form_tag(plan_places_path(@plan.id), method: :post, class: "short_form") do
+        =place.name
+        =hidden_field_tag 'venue_id', place.id
+        =button_tag('Add')
     

@@ -2,21 +2,26 @@ h1 Your Agenda
 
 - if current_user.present?
 
-  h2 Create new agenda
-  = simple_form_for(Plan.new) do |f|
-    = f.input :name
-    = f.input :from, as: :string, placeholder: "mm/dd/yyyy"
-    = f.submit
+  .grid_4
+    h2 Create new agenda
+    p Create a brand spaning new agenda and share with your friends.
+    = simple_form_for(Plan.new) do |f|
+      = f.input :name
+      = f.input :from, as: :string, placeholder: "mm/dd/yyyy"
+      = f.submit
+ 
+  .grid_4
+    h2 Your current agendas
+    p Update and review the plans you're building.
+    ul
+    - @plans.each do |plan|
+      li= link_to plan.name, plan_path(plan)
 
-  h2 Your current agendas
+  .grid_4
+    h2 Got an invite?
+    p Has someone sent you an invite to join an agenda? Plug it in here!
 
-  ul
-  - @plans.each do |plan|
-    li= link_to plan.name, plan_path(plan)
-
-  h2 Got an invite?
-
-  = form_tag(join_invitations_path, :method => :post) do
-    = label_tag :query, 'Invite code'
-    = text_field_tag(:invite_code)
-    = submit_tag(:join)
+    = form_tag(join_invitations_path, :method => :post, class: 'simple_form') do
+      = label_tag :query, 'Invite code'
+      = text_field_tag(:invite_code)
+      = submit_tag(:join)

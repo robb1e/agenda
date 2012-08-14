@@ -1,16 +1,24 @@
 @import "960_12_col";
 @import "colors";
+@import "includes";
+
+body, html {
+	font-family: "Merriweather", "Helvetica", "Arial";
+	background-color: $background-color;
+	a:link {color:$text-color;}    
+	a:visited {color:$text-color;}  
+	a:hover {color:$text-color;}  
+	a:active {color:$text-color;}
+}
 
 .container {
 	@extend .container_12;
 }
 
 h1 {
-	font-size: 30px;
-}
-
-h1, h2, h3, h4 {
 	@extend .grid_12;
+	font-size: 30px;
+	margin: 20px 10px;
 }
 
 header {
@@ -28,4 +36,31 @@ header {
 		margin-top: 10px;
 		margin-bottom: 10px;
 	} 
+}
+
+p {
+	margin: 10px 0;
+}
+
+.simple_form {
+	background-color: $form-background-color;
+	padding: 10px;
+	color: $header-text-color;
+	@include rounded;
+	input[type="submit"] {
+		margin-top: 10px;
+		@include button(white, black);
+	}
+	input[type="text"] {
+		display: block;
+		width: 90%;
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+}
+
+.short_form{
+	button {
+		margin-left: 10px;
+	}
 }

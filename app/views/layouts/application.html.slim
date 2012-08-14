@@ -4,11 +4,12 @@ html
     title Agenda
     = stylesheet_link_tag "agenda", :media => "all"
     = csrf_meta_tags
+    link href='http://fonts.googleapis.com/css?family=Merriweather:300' rel='stylesheet' type='text/css'
   body
     header
       .container
         - if current_user.present?
-          span.grid_8 Welcome, #{current_user.first_name}
+          span.grid_8= link_to "Agenda", "/"
           span.links= link_to "Logout", "/logout"
         - else
           span.grid_12 = link_to "Login with Facebook", "/auth/facebook"

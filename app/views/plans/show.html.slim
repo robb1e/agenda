@@ -1,21 +1,27 @@
 h1= @plan.name
 
-= form_tag(search_plan_path, :method => :get) do
- = label_tag :query, 'Place name'
- = text_field_tag(:query)
- = label_tag :near
- = text_field_tag(:near)
- = submit_tag(:search)
+.grid_4
+  = form_tag(search_plan_path, :method => :get, class: "simple_form") do
+   = label_tag :query, 'Place name'
+   = text_field_tag(:query)
+   = label_tag :near
+   = text_field_tag(:near)
+   = submit_tag(:search)
 
- h2 Picks
- ul
- - @plan.picks.each do |pick|
-  li= link_to pick.name, plan_pick_path(@plan, pick)
-
-h2 Plan
-ul
- - @planner.picked.each do |day, picks|
-  li= day
+  h2 Picks
   ul
-    - picks.each do |pick|
-      li= pick.name
+  - if @plan.picks.empty?
+    p Search for places to add to your picks.
+  - @plan.picks.each do |pick|
+    li= link_to pick.name, plan_pick_path(@plan, pick)
+
+.grid_8
+  h2 Plan
+  - if @planner.picked.empty?
+    p Select venues from your picks to add to your plan.
+  ul
+   - @planner.picked.each do |day, picks|
+    li= day.strftime("%d %b %Y")
+    ul
+      - picks.each do |pick|
+        li= pick.name
