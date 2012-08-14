@@ -8,17 +8,18 @@ Agenda::Application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
-
-  # Compress JavaScripts and CSS
-  config.assets.compress = true
-
-  # Don't fallback to assets pipeline if a precompiled asset is missed
+  # Enable the asset pipeline
+  config.assets.enabled = true
   config.assets.compile = false
+  config.assets.compress = false
+  config.assets.precompile += ['agenda.css']
+  config.assets.initialize_on_precompile = false
 
-  # Generate digests for assets URLs
+  config.serve_static_assets = true
+  config.static_cache_control = "public, max-age=315360000"
   config.assets.digest = true
+  config.action_controller.perform_caching = true
+  config.assets.debug = false
 
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
