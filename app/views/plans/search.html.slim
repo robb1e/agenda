@@ -1,11 +1,11 @@
 h1 Search results
 .grid_4
-	= form_tag(search_plan_path, :method => :get, class: "simple_form") do
-	 = label_tag :query, 'Place name'
-	 = text_field_tag(:query)
-	 = label_tag :near
-	 = text_field_tag(:near)
-	 = submit_tag(:search)
+  = form_tag(search_plan_path, :method => :get, class: "simple_form") do
+    = label_tag :query, 'Place name'
+    = text_field_tag(:query)
+    = label_tag :near
+    = text_field_tag(:near)
+    = submit_tag(:search)
 .grid_8
   ul
   - @places.each do |place|
@@ -14,4 +14,3 @@ h1 Search results
         =place.name
         =hidden_field_tag 'venue_id', place.id
         =button_tag('Add')
-    
